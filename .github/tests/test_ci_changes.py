@@ -30,6 +30,7 @@ class ChangeSelectionTests(unittest.TestCase):
 
     def test_global_policy_changes_clear_component_filter(self):
         for path in ['conftest.py', 'pytest.ini', '.idf_build_apps.toml', '.build-test-rules.yml',
+                     'actions/submodule-cache/action.yml',
                      '.github/actions/ci-tools/generate_build_matrix.py',
                      '.github/workflows/reusable-ci.yml']:
             with self.subTest(path=path):
