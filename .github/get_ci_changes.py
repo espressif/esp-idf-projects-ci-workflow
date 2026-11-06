@@ -23,7 +23,7 @@ def main():
     full_run = any(
         file in {
             '.idf_build_apps.toml', '.build-test-rules.yml', 'pytest.ini', 'conftest.py',
-        } or file.startswith(('.github/actions/', '.github/workflows/'))
+        } or file.startswith(('actions/', '.github/actions/', '.github/workflows/'))
         for file in files
     )
     outputs = {

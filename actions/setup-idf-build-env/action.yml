@@ -19,7 +19,7 @@ runs:
         BUILD_TARGET: ${{ inputs.target }}
       run: |
         . "${IDF_PATH}/export.sh"
-        pip install -r "$ACTION_PATH/../ci-tools/requirements.txt"
+        pip install -r "$ACTION_PATH/../../.github/actions/ci-tools/requirements.txt"
 
         # GCC >= 16 defaults -Wunused-but-set-variable to a stricter level; pin level 1
         # to match the IDF build system default. Older GCC rejects the "=1" form.

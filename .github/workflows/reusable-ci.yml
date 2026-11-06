@@ -67,7 +67,9 @@ jobs:
           repository: ${{ job.workflow_repository }}
           ref: ${{ job.workflow_sha }}
           path: .github/ci-source
-          sparse-checkout: /.github/actions/
+          sparse-checkout: |
+            /.github/actions/
+            /actions/
           sparse-checkout-cone-mode: false
           persist-credentials: false
       - &install-collection-tools
@@ -132,14 +134,14 @@ jobs:
         # Restores the cache populated by the caller's 'submodules' job and
         # materializes working trees from it without network access; on a
         # miss fetches shallow, in parallel, with retries.
-        uses: espressif/esp-idf-projects-ci-action@feat/build-test-pipeline
+        uses: espressif/esp-idf-projects-ci-workflow/actions/submodule-cache@main
       - *restore-ci-helpers
       - *checkout-ci-helpers
       - name: Install ESP-IDF Python environment
         run: |
           export IDF_PYTHON_CHECK_CONSTRAINTS=yes
           "${IDF_PATH}/install.sh" --enable-ci
-      - uses: ./.github/ci-source/.github/actions/setup-idf-build-env
+      - uses: ./.github/ci-source/actions/setup-idf-build-env
         with:
           target: ${{ matrix.idf_target }}
       - name: Build apps
